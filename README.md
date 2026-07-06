@@ -1,97 +1,172 @@
-# Sentiment Analysis Aplikasi Beyond BSI - Machine Learning & Deep Learning
+# Sentiment Analysis Aplikasi Beyond BSI
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0+-orange.svg)](https://www.tensorflow.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+<div align="center">
 
-Proyek analisis sentimen ulasan pengguna aplikasi **Beyond by BSI Mobile** dari Google Play Store menggunakan teknik Machine Learning dan Deep Learning.
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
+**Proyek analisis sentimen ulasan pengguna aplikasi Beyond by BSI Mobile dari Google Play Store menggunakan pendekatan Machine Learning dan Deep Learning.**
 
-## 📋 Deskripsi Proyek
+[Deskripsi](#-deskripsi-proyek) •
+[Dataset](#-dataset) •
+[Metodologi](#-metodologi-pemodelan) •
+[Hasil Analisis](#-performa--hasil-analisis) •
+[Cara Penggunaan](#-cara-penggunaan)
 
-Proyek ini bertujuan untuk menganalisis sentimen dari ulasan pengguna aplikasi Beyond (BSI Mobile Banking) yang dikumpulkan dari Google Play Store. Analisis dilakukan menggunakan berbagai algoritma Machine Learning dan Deep Learning untuk mengklasifikasikan sentimen menjadi kategori positif, negatif, atau netral.
-
-### Fitur Utama:
-- 🔍 **Web Scraping** ulasan dari Google Play Store
-- 🧹 **Text Preprocessing** menggunakan NLP Indonesia (Sastrawi)
-- 📊 **Exploratory Data Analysis (EDA)** dengan visualisasi
-- 🤖 **Multiple ML/DL Models** untuk perbandingan performa
-- 📈 **Model Evaluation** dengan berbagai metrik
-- ☁️ **Word Cloud** untuk visualisasi kata-kata dominan
+</div>
 
 ---
 
-## 📁 Struktur Proyek
+## Deskripsi Proyek
+
+Aplikasi perbankan digital memiliki peran krusial dalam kepuasan nasabah. Proyek ini bertujuan untuk mengekstraksi wawasan berharga dari ulasan pengguna aplikasi **Beyond by BSI Mobile** di Google Play Store. Dengan menerapkan teknik pengolahan bahasa alami (NLP) dan pemodelan prediktif, proyek ini mengklasifikasikan sentimen ulasan menjadi kategori **Positif, Negatif, atau Netral**.
+
+Analisis ini membantu mengidentifikasi fitur yang disukai pengguna, masalah teknis yang sering terjadi, serta sentimen keseluruhan terhadap aplikasi secara otomatis.
+
+### Fitur Utama
+- 🔍 **Automated Web Scraping**: Pengumpulan data ulasan langsung dari Google Play Store.
+- 🧹 **Indonesian NLP Pipeline**: Prapemrosesan teks khusus bahasa Indonesia (termasuk *stemming* dengan Sastrawi).
+- 📊 **Exploratory Data Analysis (EDA)**: Visualisasi distribusi rating dan sentimen.
+- 🤖 **Multi-Model Comparison**: Evaluasi performa berbagai algoritma ML dan DL.
+- ☁️ **Word Cloud**: Visualisasi kata-kata dominan untuk ekstraksi topik.
+
+---
+
+## Struktur Proyek
 
 ```
 Playstore/
-├── BMPL_Proyek_Sentiment_Analysis.ipynb  # Notebook utama analisis
-├── Scraping_aplikasi_beyond.py           # Script scraping data
-├── review_beyond_apps.csv                # Dataset ulasan (31MB+)
-├── requirement.txt                       # Dependencies
-└── README.md                             # Dokumentasi ini
+│
+├── 📓 BMPL_Proyek_Sentiment_Analysis.ipynb    # Notebook utama (Eksplorasi & Modeling)
+├── 🕷️ Scraping_aplikasi_beyond.py             # Script otomatisasi scraping data
+├── 📄 review_beyond_apps.csv                  # Dataset ulasan hasil scraping (~31MB)
+├── 📋 requirement.txt                         # Daftar dependensi library
+└── 📖 README.md                               # Dokumentasi proyek (file ini)
 ```
 
 ---
 
-## 🛠️ Teknologi & Library
+## Teknologi yang Digunakan
 
-### Core Libraries:
-- **TensorFlow** - Deep Learning framework
-- **Scikit-learn** - Machine Learning algorithms
-- **Pandas & NumPy** - Data manipulation
-- **Matplotlib** - Data visualization
+Proyek ini dibangun menggunakan berbagai library standar industri untuk Data Science dan Machine Learning:
 
-### NLP Libraries:
-- **NLTK** - Natural Language Toolkit
-- **Sastrawi** - Indonesian text processing (stemming & stopwords)
-- **WordCloud** - Visualisasi kata
-
-### Data Collection:
-- **google-play-scraper** - Scraping ulasan Google Play Store
-- **imbalanced-learn** - Handling imbalanced dataset
+| Kategori | Teknologi | Fungsi Utama |
+|----------|-----------|--------------|
+| **Core Frameworks** | TensorFlow, Keras | Pembuatan arsitektur Deep Learning (LSTM) |
+| **Machine Learning** | Scikit-learn | Algoritma ML klasik (Logistic Regression, Random Forest), evaluasi metrik |
+| **Data Processing** | Pandas, NumPy | Manipulasi DataFrame dan komputasi numerik |
+| **Natural Language** | NLTK, Sastrawi | Tokenisasi, stopword removal, stemming bahasa Indonesia |
+| **Data Collection** | google-play-scraper | Pengumpulan data ulasan aplikasi |
+| **Visualization** | Matplotlib, WordCloud | Visualisasi grafik EDA dan kata dominan |
 
 ---
 
-## 📦 Instalasi
+## Dataset
+
+Dataset diperoleh dengan melakukan scraping mandiri menggunakan script `Scraping_aplikasi_beyond.py`.
+
+| Informasi | Deskripsi |
+|-----------|-----------|
+| **Sumber Data** | Google Play Store (`co.id.bankbsi.superapp`) |
+| **Jumlah Baris** | ~10.000 ulasan |
+| **Ukuran File** | ~31 MB (`review_beyond_apps.csv`) |
+| **Bahasa** | Indonesia |
+
+**Atribut Utama Dataset:**
+- `content`: Teks ulasan dari pengguna (Target klasifikasi)
+- `score`: Rating bintang 1 hingga 5
+- `at`: Timestamp waktu ulasan diberikan
+- `thumbsUpCount`: Jumlah *likes* yang diterima ulasan
+
+---
+
+## Metodologi Pemodelan
+
+Proyek ini mengikuti siklus standar *Data Science*:
+
+1. **Pengumpulan Data**: Scraping ulasan terbaru dari Play Store.
+2. **Data Cleaning**: Penanganan *missing values* dan data duplikat.
+3. **Text Preprocessing**: 
+   - *Case folding* (huruf kecil)
+   - Penghapusan tanda baca, angka, dan karakter khusus
+   - *Tokenization* (pemisahan kata)
+   - *Stopword removal* (menghapus kata hubung/tidak penting)
+   - *Stemming* (pengembalian ke kata dasar menggunakan Sastrawi)
+4. **Feature Engineering**: 
+   - TF-IDF Vectorization untuk model Machine Learning klasik.
+   - Word Embeddings untuk arsitektur Deep Learning.
+5. **Pemodelan**:
+   - **Machine Learning**: Decision Tree (Baseline), Random Forest, dan Logistic Regression.
+   - **Deep Learning**: Recurrent Neural Network menggunakan **LSTM** (*Long Short-Term Memory*).
+6. **Evaluasi**: Menggunakan metrik *Accuracy, Precision, Recall*, dan *Confusion Matrix*.
+
+---
+
+## Performa & Hasil Analisis
+
+Proyek ini mengevaluasi beberapa pendekatan algoritma dan menghasilkan model Deep Learning dengan performa yang superior.
+
+### Tabel Komparasi Akurasi Model
+
+| Algoritma / Arsitektur | Kategori | Akurasi Data Uji (Test) | Status |
+|------------------------|----------|-------------------------|--------|
+| **LSTM (Deep Learning)** | Neural Network | **~95.69%** | 🥇 **Best Model** |
+| **Logistic Regression** | Machine Learning | **86.48%** | 🥈 Runner Up (ML) |
+| **Random Forest** | Machine Learning | **84.26%** | 🥉 |
+| **Decision Tree** | Machine Learning | 79.88% | Baseline |
+
+> **Detail Arsitektur LSTM:** Model terbaik menggunakan kombinasi *Embedding Layer* untuk representasi densitas kata, *LSTM Layer* untuk menangkap konteks kalimat dan dependensi jarak jauh, serta *Dense Layer* untuk klasifikasi akhir dengan *Adam Optimizer*.
+
+### Wawasan Bisnis (*Business Insights*)
+Berdasarkan visualisasi *Word Cloud* dan ekstraksi teks:
+- **Pendorong Kepuasan (Positif)**: Ulasan positif didominasi oleh kata-kata terkait kemudahan dalam bertransaksi, UI/UX baru yang lebih segar (Beyond), dan kelengkapan fitur perbankan syariah.
+- **Titik Lemah (Negatif)**: Keluhan nasabah paling banyak berkaitan dengan kendala gagal *login*, pembaruan paksa yang memberatkan, serta isu server *timeout*.
+- **Rekomendasi**: Model LSTM yang dikembangkan ini siap untuk di-*deploy* sebagai *pipeline* analisis *real-time*, sehingga tim Layanan Pelanggan (CS) BSI dapat segera mendeteksi komplain berat (*churn risk*) secara otomatis tanpa membaca ulasan satu per satu.
+
+---
+
+## Cara Penggunaan
 
 ### 1. Clone Repository
+
+Unduh proyek ini ke dalam mesin lokal Anda:
+
 ```bash
-git clone git@github-lilik:liliktryawan/Sentimen-analysis-aplikasi-BSI-ML-dan-DL-.git
-cd Sentimen-analysis-aplikasi-BSI-ML-dan-DL-
+git clone git@github.com:liliktryawan/Sentimen-analysis-aplikasi-BSI.git
+cd Sentimen-analysis-aplikasi-BSI
 ```
 
-### 2. Install Dependencies
+*(Catatan: Pastikan Anda menjalankan perintah ini dari terminal yang mendukung Git)*
+
+### 2. Instalasi Dependensi
+
+Instal semua library yang dibutuhkan melalui `pip`:
+
 ```bash
 pip install -r requirement.txt
 ```
 
-### 3. Download NLTK Data (Jika diperlukan)
+Jika Anda baru pertama kali menggunakan NLTK, unduh resource yang diperlukan melalui Python:
 ```python
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 ```
 
----
+### 3. Mengumpulkan Data Baru (Opsional)
 
-## 🚀 Cara Penggunaan
-
-### 1. Scraping Data Ulasan
-Jalankan script untuk mengumpulkan ulasan dari Google Play Store:
+Jika Anda ingin melakukan pembaruan dataset dengan ulasan terbaru:
 
 ```bash
 python Scraping_aplikasi_beyond.py
 ```
+*(Script ini akan menimpa/memperbarui file `review_beyond_apps.csv`)*
 
-Script ini akan:
-- Mengambil 10,000 ulasan terbaru aplikasi Beyond
-- Menyimpan data ke file `review_beyond_apps.csv`
-- Menggunakan sorting berdasarkan relevansi
+### 4. Menjalankan Analisis
 
-### 2. Analisis Sentimen
-Buka dan jalankan Jupyter Notebook:
+Buka dan jalankan semua cell di Jupyter Notebook untuk melihat proses EDA, pelatihan model, dan hasil evaluasi secara detail:
 
 ```bash
 jupyter notebook BMPL_Proyek_Sentiment_Analysis.ipynb
@@ -99,133 +174,9 @@ jupyter notebook BMPL_Proyek_Sentiment_Analysis.ipynb
 
 ---
 
-## 📊 Metodologi
+## Author
 
-### 1. **Data Collection**
-- Sumber: Google Play Store
-- Aplikasi: Beyond by BSI Mobile (`co.id.bankbsi.superapp`)
-- Jumlah data: ~10,000 ulasan
-- Bahasa: Indonesia
-
-### 2. **Data Preprocessing**
-- **Cleaning**: Menghapus missing values
-- **Text Preprocessing**:
-  - Case folding (lowercase)
-  - Remove special characters & numbers
-  - Tokenization
-  - Stopword removal (Bahasa Indonesia)
-  - Stemming menggunakan Sastrawi
-
-### 3. **Feature Engineering**
-- TF-IDF Vectorization
-- Word Embeddings (untuk Deep Learning)
-- Feature extraction dari rating dan metadata
-
-### 4. **Modeling**
-Proyek ini mengimplementasikan berbagai algoritma:
-
-#### Machine Learning:
-- Naive Bayes
-- Support Vector Machine (SVM)
-- Random Forest
-- Logistic Regression
-
-#### Deep Learning:
-- LSTM (Long Short-Term Memory)
-- CNN (Convolutional Neural Network)
-- Hybrid Models
-
-### 5. **Evaluation**
-Metrik evaluasi yang digunakan:
-- Accuracy
-- Precision
-- Recall
-- F1-Score
-- Confusion Matrix
+**Lilik Triawan**  
+GitHub: [@liliktryawan](https://github.com/liliktryawan)
 
 ---
-
-## 📈 Dataset
-
-### Informasi Dataset
-- **File**: `review_beyond_apps.csv`
-- **Size**: ~31 MB
-- **Rows**: ~10,000 ulasan
-- **Columns**:
-  - `reviewId`: ID unik ulasan
-  - `userName`: Nama pengguna
-  - `userImage`: URL foto profil
-  - `content`: Isi ulasan (teks)
-  - `score`: Rating (1-5 bintang)
-  - `thumbsUpCount`: Jumlah likes
-  - `reviewCreatedVersion`: Versi app saat review
-  - `at`: Timestamp review
-  - `replyContent`: Balasan developer
-  - `repliedAt`: Timestamp balasan
-  - `appVersion`: Versi aplikasi
-
----
-
-## 🎯 Hasil & Insights
-
-> **Note**: Hasil analisis lengkap dapat dilihat di notebook `BMPL_Proyek_Sentiment_Analysis.ipynb`
-
-### Key Findings:
-- Distribusi sentimen pengguna
-- Kata-kata yang paling sering muncul (positif & negatif)
-- Performa model terbaik
-- Rekomendasi improvement untuk aplikasi
-
----
-
-## 🔧 Troubleshooting
-
-### SSH Connection Issues
-Jika mengalami masalah koneksi SSH saat clone/push:
-
-```bash
-# Gunakan SSH over HTTPS (port 443)
-git remote set-url origin git@github-lilik:liliktryawan/Sentimen-analysis-aplikasi-BSI-ML-dan-DL-.git
-```
-
-Pastikan SSH config di `~/.ssh/config` sudah dikonfigurasi:
-```
-Host github-lilik
-  HostName ssh.github.com
-  Port 443
-  User git
-  IdentityFile ~/.ssh/id_lilik_github
-  IdentitiesOnly yes
-```
-
----
-
-## 👨‍💻 Author
-
-**Lilik Triawan**
-- GitHub: [@liliktryawan](https://github.com/liliktryawan)
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **BSI (Bank Syariah Indonesia)** - Aplikasi Beyond
-- **Google Play Store** - Sumber data ulasan
-- **Sastrawi** - Indonesian NLP library
-- **TensorFlow & Scikit-learn** - ML/DL frameworks
-
----
-
-## 📞 Contact & Support
-
-Jika ada pertanyaan atau saran, silakan buat issue di repository ini atau hubungi melalui GitHub.
-
----
-
-**Happy Analyzing! 🚀📊**
