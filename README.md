@@ -37,8 +37,6 @@ Analisis ini membantu mengidentifikasi fitur yang disukai pengguna, masalah tekn
 ## Struktur Proyek
 
 ```
-Playstore/
-│
 ├── 📓 BMPL_Proyek_Sentiment_Analysis.ipynb    # Notebook utama (Eksplorasi & Modeling)
 ├── 🕷️ Scraping_aplikasi_beyond.py             # Script otomatisasi scraping data
 ├── 📄 review_beyond_apps.csv                  # Dataset ulasan hasil scraping (~31MB)
